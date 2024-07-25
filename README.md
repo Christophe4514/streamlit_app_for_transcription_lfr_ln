@@ -1,2 +1,2 @@
 # streamlit_app_for_transcription_lfr_ln
-recher de fin de cycle de licence
+Recherche de fin de cycle de licence en Science informatique
