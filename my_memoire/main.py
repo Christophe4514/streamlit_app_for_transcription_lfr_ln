@@ -11,7 +11,7 @@ text_to_translate = st.text_input("Write the text to translate")
 
 # upload audio to transcribe and translate late
 audio_file = st.file_uploader("upload audio", type=["wav", "mp3", "m4a"])
-audio = audio_file.name
+
 
 # print(audio_file.name)
 # load model
@@ -19,12 +19,16 @@ small_model = whisper.load_model("small")
 st.text("Whisper model loaded")
 
 # load audio
-try:
-    transcribe = whisper.load_audio(audio)
-except FileNotFoundError:
-    print("Erreur : Fichier audio introuvable.")
-except RuntimeError as e:
-    print("Erreur lors du chargement de l'audio :", e)
+if audio_file is not None:
+    try:
+        audio = audio_file.name
+        transcribe = whisper.load_audio(audio)
+    except FileNotFoundError:
+        print("Erreur : Fichier audio introuvable.")
+    except RuntimeError as e:
+        print("Erreur lors du chargement de l'audio :", e)
+else:
+    st.sidebar.error("Please upload an audio file")
 
 # transcribe audio using whisper model
 if st.sidebar.button("Transcribe Audio"):
