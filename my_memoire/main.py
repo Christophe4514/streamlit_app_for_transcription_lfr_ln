@@ -1,6 +1,5 @@
 import streamlit as st
 import whisper
-import os
 # import sounddevice as sd
 from deep_translator import GoogleTranslator
 
@@ -35,7 +34,7 @@ if st.sidebar.button("Transcribe Audio"):
     if audio_file is not None:
         st.sidebar.success("Transcribing Audio")
         # audio_file = whisper.load_audio(audio_file.name)
-        transcription = small_model.transcribe(audio, fp16=False)
+        transcription = small_model.transcribe(audio_file)
         st.sidebar.success("Transcription completed")
         st.markdown(transcription["text"])
     else:
